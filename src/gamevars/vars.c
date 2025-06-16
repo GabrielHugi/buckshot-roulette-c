@@ -1,0 +1,2 @@
+int playerhp;
+int dealerhp;
