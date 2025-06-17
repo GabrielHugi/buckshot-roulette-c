@@ -1,9 +1,6 @@
-#include "vars.h";
-// the lifes player has left
-int playerhp;
-// items player has
-int playerInv[8];
-// the lifes dealer has left
-int dealerhp;
-// items dealer has
-int dealerInv[8];
+#include "vars.h"
+
+struct character player;
+char playerInv[8][15];
+struct character dealer;
+char dealerInv[8][15];
