@@ -20,6 +20,27 @@ void putInsideBox (char **items, int lines) {
     sprintf(items[i], "%s%s%s", leftStr, items[i], rightStr);
   }
 }
+
+void printMenu() {
+  char string[4][30];
+  for (int i = 0; i < 4; i++) memset(string[i], 0, 20);
+  sprintf(string[0], "buckshot roulette C");
+  sprintf(string[1], "choose your game settings");
+  sprintf(string[2], "normal");
+  sprintf(string[3], "extended");
+}
+
+void printGamemodes() {
+  char string[4][20];
+  for (int i = 0; i < 4; i++) memset(string[i], 0, 15);
+  sprintf(string[0], "pick a gamemode");
+  sprintf(string[1], "shotgun");
+  sprintf(string[2], "revolver");
+  sprintf(string[3], "rifle");
+}
+
+}
+
 void printStats() {
   char string[6][60];
   for (int i = 0; i < 6; i++) memset(string[i], 0, 60);
@@ -36,4 +57,5 @@ void printStats() {
 void printCareful() {
   printf("Careful, now...");
 }
+
 

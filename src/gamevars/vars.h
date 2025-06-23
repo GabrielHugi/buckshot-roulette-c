@@ -7,9 +7,12 @@ struct character {
 struct gun {
     // 0 = nothing, 1 = blank, 2 = live
     int loadOrder[31];
-
     // ammount of hp this takes
     int damage;
+    // max bullets
+    int capacity;
+    // current bullets
+    int currentBullets;
 };
 
 struct item {
@@ -28,7 +31,7 @@ struct item {
     9 - Rusty handgun, 50% chance to hit him for 1 hp, 50% change explode on you for 1 hp (Is an item not a main weapon, you still have the turn regardless of outcome)
     10 - Body armor, tanks up 1 hp on the next hit but the next hit has to come in the immediate next round, otherwise the armor breaks cuz its old and shit
     11 - Running shoes, lets you attempt to run away with wathever money you already have, 70% chance of failure
-    12 - 
+    12 - Coffe, racks a random number of shells between 1 and 4 with the chance for 2 shells being 2/5, the rest having evenly distributed chances 
     additions for sigma mode
      - Mogging, makes your opponent look ugly and takes 1 hp from him, but there is a 20% chance that you will be the one considered ugly and your self steem will be obliterated for 2 points
      - 
