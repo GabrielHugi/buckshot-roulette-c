@@ -4,30 +4,35 @@
 #include <stdio.h>
 
 void fillIn (char *str, int size, char what) {
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size-1; i++) {
     str[i] = what;
   }
+  str[size-1] = '\0';
 }
 
-void putInsideBox (char **items, int lines) {
+void putInsideBox (char items[][80], int lines) {
   int max = 80;
   for (int i = 0; i < lines; i++) {
     int len = strlen(items[i]);
     int left = (max-len)/2; int right = (max-len)/2;
     if (left + right != max-len) right++;
-    char leftStr[left]; char rightStr[right];
+    char leftStr[left+1]; char rightStr[right+1];
     fillIn(leftStr, left, ' '); fillIn(rightStr, right, ' ');
     sprintf(items[i], "%s%s%s", leftStr, items[i], rightStr);
   }
 }
 
 void printMenu() {
-  char string[4][30];
+  char string[4][80];
   for (int i = 0; i < 4; i++) memset(string[i], 0, 20);
   sprintf(string[0], "buckshot roulette C");
   sprintf(string[1], "choose your game settings");
   sprintf(string[2], "normal");
   sprintf(string[3], "extended");
+  putInsideBox(string, 4);
+  for (int i = 0; i < 4; i++) {
+    printf("%s\n", string[i]);
+  }
 }
 
 void printGamemodes() {
