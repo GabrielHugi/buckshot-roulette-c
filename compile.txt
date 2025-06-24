@@ -1,1 +1,0 @@
-gcc -o main src/main.c src/game/general.c src/game/handleItem.c src/gamemodes/gamemodes.c src/gamevars/vars.c src/interaction/messages.c
