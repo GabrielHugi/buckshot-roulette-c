@@ -1,5 +1,5 @@
-#pragma once
-#include "../gamevars/vars.h";
+#include "messages.h"
+#include "../gamevars/vars.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -39,18 +39,17 @@ void printGamemodes() {
   sprintf(string[3], "rifle");
 }
 
-}
 
 void printStats() {
   char string[6][60];
   for (int i = 0; i < 6; i++) memset(string[i], 0, 60);
   //memcpy(string[0], "-----------Player HP: %d-----------", , playerhp);
   sprintf(string[0], "-----------Player HP: %d-----------", player.hp);
-  sprintf(string[1], "-%s--%s------%s--%s-", playerInv[0], playerInv[1], playerInv[4], playerInv[5]);
-  sprintf(string[2], "-%s--%s------%s--%s-", playerInv[2], playerInv[3], playerInv[6], playerInv[7]);
+  sprintf(string[1], "-%s--%s------%s--%s-", player.inv[0], player.inv[1], player.inv[4], player.inv[5]);
+  sprintf(string[2], "-%s--%s------%s--%s-", player.inv[2], player.inv[3], player.inv[6], player.inv[7]);
   sprintf(string[3], "-----------Dealer HP: %d-----------", dealer.hp);
-  sprintf(string[4], "-%s--%s------%s--%s-", dealerInv[0], dealerInv[1], dealerInv[4], dealerInv[5]);
-  sprintf(string[5], "-%s--%s------%s--%s-", dealerInv[2], dealerInv[3], dealerInv[6], dealerInv[7]);
+  sprintf(string[4], "-%s--%s------%s--%s-", dealer.inv[0], dealer.inv[1], dealer.inv[4], dealer.inv[5]);
+  sprintf(string[5], "-%s--%s------%s--%s-", dealer.inv[2], dealer.inv[3], dealer.inv[6], dealer.inv[7]);
   
 }
 
@@ -58,4 +57,7 @@ void printCareful() {
   printf("Careful, now...");
 }
 
+void printNewScreen() {
+  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+}
 

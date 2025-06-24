@@ -1,5 +1,19 @@
-#pragma once
-#include "./gamevars/vars.h";
+#include "handleItem.h"
+#include "../gamevars/vars.h"
+
+void burnerPhone(struct character destination);
+void beer(struct character destination);
+void adrenaline(struct character destination);
+void cigarettePack(struct character destination);
+void expiredMedicine(struct character destination);
+void handSaw(struct character destination);
+void handcuffs(struct character destination);
+void inverter(struct character destination);
+void magnifyingGlass(struct character destination);
+void rustyHandgun(struct character destination);
+void bodyArmor(struct character destination);
+void runningShoes(struct character destination);
+void coffee(struct character destination);
 
 void handleItem(struct character destination, struct item what) {
     //official items
@@ -54,6 +68,46 @@ void handleItem(struct character destination, struct item what) {
     }
     //12 - 
     if (what.effect == 12) {
-        coffe(destination);
+        coffee(destination);
     }
+}
+
+void burnerPhone(struct character destination) {
+
+}
+void beer(struct character destination) {
+
+}
+void adrenaline(struct character destination) {
+
+}
+void cigarettePack(struct character destination) {
+
+}
+void expiredMedicine(struct character destination) {
+
+}
+void handSaw(struct character destination) {
+
+}
+void handcuffs(struct character destination) {
+
+}
+void inverter(struct character destination) {
+
+}
+void magnifyingGlass(struct character destination) {
+
+}
+void rustyHandgun(struct character destination) {
+
+}
+void bodyArmor(struct character destination) {
+
+}
+void runningShoes(struct character destination) {
+
+}
+void coffee(struct character destination) {
+  
 }

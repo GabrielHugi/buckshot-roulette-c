@@ -1,6 +1,8 @@
-#pragma once
+#include "general.h"
+#include <stdio.h>
 #include <string.h>
-#include "add path to messages thing"
+#include "../gamevars/vars.h"
+#include "../interaction/messages.h"
 
 int normalGame() {
 
@@ -16,7 +18,18 @@ int initiateGame() {
   printMenu();
   while (handleValid != 1) {
     fgets(handle, 45, stdin);
+    printNewScreen();
+    if (strcmp(handle, "normal\n") == 0 || strcmp(handle, "extended\n") == 0) handleValid = 1;
+  } handleValid = 0;
+
+  // sets result
+  if (strcmp(handle, "normal\n") == 0) currentGame.extended = 0;
+  else currentGame.extended = 1;
+
+  printGamemodes();
+  while (handleValid != 1) {
+    fgets(handle, 45, stdin);
+    printNewScreen();
     if (strcmp(handle, "normal\n") == 0 || strcmp(handle, "extended\n") == 0) handleValid = 1;
   }
-
 }
