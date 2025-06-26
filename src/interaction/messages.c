@@ -10,15 +10,18 @@ void fillIn (char *str, int size, char what) {
   str[size-1] = '\0';
 }
 
-void putInsideBox (char items[][80], int lines) {
+void putInsideBox (char items[][80], int lines, int leftBorder, int rightBorder) {
   int max = 80;
   for (int i = 0; i < lines; i++) {
     int len = strlen(items[i]);
     int left = (max-len)/2; int right = (max-len)/2;
     if (left + right != max-len) right++;
     char leftStr[left+1]; char rightStr[right+1];
-    fillIn(leftStr, left, ' '); fillIn(rightStr, right, ' ');
-    sprintf(items[i], "%s%s%s", leftStr, items[i], rightStr);
+    char fillLeft = '\0'; char fillRight = '\0';
+    if (leftBorder == 1) fillLeft = ' '; if (rightBorder == 1) fillRight = ' ';
+    fillIn(leftStr, left, fillLeft); fillIn(rightStr, right, fillRight);
+    char temp[80]; strcpy(temp, items[i]);
+    sprintf(items[i], "%s%s%s", leftStr, temp, rightStr);
   }
 }
 
@@ -29,10 +32,17 @@ void printMenu() {
   sprintf(string[1], "choose your game settings");
   sprintf(string[2], "normal");
   sprintf(string[3], "extended");
-  putInsideBox(string, 4);
+  putInsideBox(string, 4, 1, 1);
   for (int i = 0; i < 4; i++) {
     printf("%s\n", string[i]);
   }
+}
+
+void printCustom(char string[80], int isInput) {
+  char temp[1][80];
+  strcpy (temp[0], string);
+  putInsideBox(temp, 1, 1, -(isInput-1));
+  printf(temp[0]);
 }
 
 void printGamemodes() {

@@ -16,10 +16,15 @@ int initiateGame() {
   char handle[50];
   int handleValid = 0;
   printMenu();
+  printf("\n");
+  printCustom("Select option: ", 1);
   while (handleValid != 1) {
     fgets(handle, 45, stdin);
-    printNewScreen();
     if (strcmp(handle, "normal\n") == 0 || strcmp(handle, "extended\n") == 0) handleValid = 1;
+    else {
+      printNewScreen();
+      printMenu();
+    }
   } handleValid = 0;
 
   // sets result
@@ -29,7 +34,10 @@ int initiateGame() {
   printGamemodes();
   while (handleValid != 1) {
     fgets(handle, 45, stdin);
-    printNewScreen();
     if (strcmp(handle, "normal\n") == 0 || strcmp(handle, "extended\n") == 0) handleValid = 1;
+    else {
+      printNewScreen();
+      printMenu();
+    }
   }
 }
