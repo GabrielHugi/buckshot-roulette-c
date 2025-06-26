@@ -25,9 +25,13 @@ void putInsideBox (char items[][80], int lines, int leftBorder, int rightBorder)
   }
 }
 
+/*
+MENUS
+*/
+
 void printMenu() {
   char string[4][80];
-  for (int i = 0; i < 4; i++) memset(string[i], 0, 20);
+  for (int i = 0; i < 4; i++) memset(string[i], 0, 80);
   sprintf(string[0], "buckshot roulette C");
   sprintf(string[1], "choose your game settings");
   sprintf(string[2], "normal");
@@ -46,15 +50,22 @@ void printCustom(char string[80], int isInput) {
 }
 
 void printGamemodes() {
-  char string[4][20];
-  for (int i = 0; i < 4; i++) memset(string[i], 0, 15);
+  char string[4][80];
+  for (int i = 0; i < 4; i++) memset(string[i], 0, 80);
   sprintf(string[0], "pick a gamemode");
   sprintf(string[1], "shotgun");
   sprintf(string[2], "revolver");
   sprintf(string[3], "rifle");
+  putInsideBox(string, 4, 1, 1);
+  for (int i = 0; i < 4; i++) {
+    printf("%s\n", string[i]);
+  }
 }
 
 
+/*
+GAME SCREENS
+*/
 void printStats() {
   char string[6][60];
   for (int i = 0; i < 6; i++) memset(string[i], 0, 60);
@@ -68,6 +79,29 @@ void printStats() {
   
 }
 
+void printStartingLocation() {
+  if (currentGame.gun == 0) {
+    char string[9][80];
+    for (int i = 0; i < 9; i++) memset(string[i], 0, 60);
+    sprintf(string[0], "######################################################################");
+    sprintf(string[1], "#############################|----------|#############################");
+    sprintf(string[2], "#############################|----------|#############################");
+    sprintf(string[3], "#############################|----------|#############################");
+    sprintf(string[4], "#############################|----------|#############################");
+    sprintf(string[5], "#############################|--------O-|#############################");
+    sprintf(string[6], "#############################|----------|#############################");
+    sprintf(string[7], "#############################|----------|#############################");
+    sprintf(string[8], "#############################|----------|#############################");
+    putInsideBox(string, 9, 1, 1);
+    for (int i = 0; i < 9; i++) {
+    printf("%s\n", string[i]);
+  }
+  }
+}
+
+/*
+MISC
+*/
 void printCareful() {
   printf("Careful, now...");
 }
