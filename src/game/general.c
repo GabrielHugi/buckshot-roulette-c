@@ -4,6 +4,12 @@
 #include "../gamevars/vars.h"
 #include "../interaction/messages.h"
 
+//global handles et cetera
+char handle[50];
+char **words;
+int handleValid = 0;
+int option;
+
 //functions
 
 /* example of how to call this fun
@@ -12,7 +18,6 @@
 */
 // responds with position of option chosen
 int askLoop(int *handleValid, char *message, char **options, int optionNumber, void (printScreen(void))) {
-  char handle[50];
   while (*handleValid != 1) {
     printf("\n");
     printCustom(message, 1);
@@ -29,25 +34,38 @@ int askLoop(int *handleValid, char *message, char **options, int optionNumber, v
   }
 }
 
-int normalGame() {
+int pveGame() {
+  printNewScreen();
+  printStartingLocation();
+  words = (char *[]){ "door\n", "pill\n" };
+  option = askLoop(&handleValid, "Select interaction:", words, 2, printStartingLocation);
+  if (option == 0) currentGame.endless = 0;
+  if (option == 1) currentGame.endless = 1;
+
+  printNewScreen();
+  printSecondaryLocation();
+  words = (char *[]){ "door\n", "bars\n" };
+  option = askLoop(&handleValid, "Select interaction:", words, 2, printSecondaryLocation);
+  if (option == 1) {
+    printDeath(0);
+    return 1;
+  }
+}
+
+int pvpGame() {
 
 }
 
-int extendedGame() {
+int multiplayerGame() {
 
 }
 
 int initiateGame() {
   // test screens
 if (1 == 1) {
-  currentGame.gun = 0;
-  printStartingLocation();
+  printDeath(0);
 }
 else {
-  char handle[50];
-  char **words;
-  int handleValid = 0;
-  int option;
   printNewScreen();
   printMenu();
   words = (char *[]){ "normal\n", "extended\n"};
@@ -65,9 +83,12 @@ else {
   if (option == 2) currentGame.gun = 2;
 
   printNewScreen();
-  printStartingLocation();
-  words = (char *[]){ "door\n" };
-  askLoop(&handleValid, "Select interaction:", words, 1, printStartingLocation);
+  printPlaymodes();
+  words = (char *[]){ "pve\n", "pvp\n", "multiplayer\n" };
+  option = askLoop(&handleValid, "Select option:", words, 3, printPlaymodes);
+  if (option == 0) {currentGame.mode = 0; pveGame();}
+  if (option == 1) {currentGame.mode = 1; pvpGame();}
+  if (option == 2) {currentGame.mode = 2; multiplayerGame();}
 
 
 

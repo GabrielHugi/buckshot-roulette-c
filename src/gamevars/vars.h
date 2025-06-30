@@ -7,6 +7,8 @@ struct game {
   int extended;
   // mode: 1 = pve, 2 = pvp(local), 3 = pvp(internet)
   int mode;
+  // 0 = story, 1 = endless
+  int endless;
 };
 
 // player "object" (but let's agree to not call it object because object oriented programming is for losers)

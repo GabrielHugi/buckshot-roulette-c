@@ -50,7 +50,7 @@ void putInsideBox (char items[][stdMaxChars], int lines, int leftBorder, int rig
     char fillLeft = '\0'; char fillRight = '\0';
     if (leftBorder == 1) fillLeft = ' '; if (rightBorder == 1) fillRight = ' ';
     fillIn(leftStr, left, fillLeft); fillIn(rightStr, right, fillRight);
-    char temp[80]; strcpy(temp, items[i]);
+    char temp[85]; strcpy(temp, items[i]);
     sprintf(items[i], "%s%s%s", leftStr, temp, rightStr);
   }
 }
@@ -99,6 +99,19 @@ void printGamemodes() {
   }
 }
 
+void printPlaymodes() {
+  char string[4][stdMaxChars];
+  for (int i = 0; i < 4; i++) memset(string[i], 0, stdMaxChars);
+  sprintf(string[0], "pick a play mode");
+  sprintf(string[1], "pve");
+  sprintf(string[2], "pvp");
+  sprintf(string[3], "multiplayer");
+  putInsideBox(string, 4, 1, 1);
+  for (int i = 0; i < 4; i++) {
+    printf("%s\n", string[i]);
+  }
+}
+
 
 /*
 GAME SCREENS
@@ -119,8 +132,8 @@ void printStats() {
 void printStartingLocation() {
   if (currentGame.gun == 0) {
     // the scenario
-    char string[9][stdMaxChars];
-    for (int i = 0; i < 9; i++) memset(string[i], 0, stdMaxChars);
+    char string[10][stdMaxChars];
+    for (int i = 0; i < 10; i++) memset(string[i], 0, stdMaxChars);
     sprintf(string[0], "######################################################################");
     sprintf(string[1], "#############################|----------|#############################");
     sprintf(string[2], "#############################|----------|#############################");
@@ -129,7 +142,8 @@ void printStartingLocation() {
     sprintf(string[5], "  " RED "U" RESET " | |######################|--------O-|#############################");
     sprintf(string[6], "  |   |######################|----------|#############################");
     sprintf(string[7], "|    /#######################|----------|#############################");
-    sprintf(string[8], "   /#########################|----------|#############################");
+    sprintf(string[8], "   /##################################################################");
+    sprintf(string[9], " /####################################################################");
 
     //info
     char stringSide[3][stdMaxChars];
@@ -138,9 +152,80 @@ void printStartingLocation() {
     sprintf(stringSide[1], "You can interact with:");
     sprintf(stringSide[2], "Door, pill(red)");
 
-    putInsideBox(string, 9, 1, 1);
+    putInsideBox(string, 10, 1, 1);
     addSideInfo(string, stringSide, 3);
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 10; i++) {
+      printf("%s\n", string[i]);
+    }
+  }
+}
+
+void printSecondaryLocation() {
+  if (currentGame.mode == 0) {
+    // the scenario
+    char string[12][stdMaxChars];
+    for (int i = 0; i < 12; i++) memset(string[i], 0, stdMaxChars);
+    sprintf(string[0], "########################################                               ");
+    sprintf(string[1], "#|-------|##############################                               ");
+    sprintf(string[2], "#|-------|#####################--------------------------              ");
+    sprintf(string[3], "#|-----o-|#|\\#----------------         /            /    \\             ");
+    sprintf(string[4], "#|-------|#|#\\      /    /                               |\\            ");
+    sprintf(string[5], "XXXXXXXXXXX|##\\                                            \\           ");
+    sprintf(string[6], "XXXXXXXXXXXX  |\\            -------------                  |\\          ");
+    sprintf(string[7], "XXXXXXXXXXXXX-|-\\-----------        /     \\                  \\         ");
+    sprintf(string[8], "XXXXXXXXXXXXXX|  \\   /                    |\\                 |\\        ");
+    sprintf(string[9], "XXXXXXXXXXXXXXX   \\                         \\                  \\       ");
+    sprintf(string[10],"XXXXXXXXXXXXXXXX--|\\-----                    \\                 |\\      ");
+    sprintf(string[11],"XXXXXXXXXXXXXXXXX | \\   \\                   |\\                  \\     ");
+
+    //info
+    char stringSide[4][stdMaxChars];
+    for (int i = 0; i < 4; i++) memset(stringSide[i], 0, stdMaxChars);
+    sprintf(stringSide[0], "You are in club");
+    sprintf(stringSide[1], "Loud music plays in the background");
+    sprintf(stringSide[2], "You can interact with:");
+    sprintf(stringSide[3], "Door, Bars");
+
+    putInsideBox(string, 12, 1, 1);
+    //addSideInfo(string, stringSide, 3);
+    for (int i = 0; i < 12; i++) {
+      printf("%s\n", string[i]);
+    }
+  }
+}
+
+void printDeath(int cause) {
+  /*
+  the causes for one's death:
+  0 - commiting suicide by jumping off at the club scene
+  
+  */
+  if (cause == 0) {
+    char string[12][stdMaxChars];
+    for (int i = 0; i < 12; i++) memset(string[i], 0, stdMaxChars);
+    sprintf(string[0], "                                                                      ");
+    sprintf(string[1], "                                                                      ");
+    sprintf(string[2], "                                                                      ");
+    sprintf(string[3], "                                                                      ");
+    sprintf(string[4], "                                                                      ");
+    sprintf(string[5], "             |     " RED "Oo." RESET "                                                   ");
+    sprintf(string[6], "     ___     |  ___                                                   ");
+    sprintf(string[7], "  H_/   #########" RED "##|..." RESET "                                                  ");
+    sprintf(string[8], "     ___###########|                                                  ");
+    sprintf(string[9], "  __/        |  \"\"\"                                                      ");
+    sprintf(string[10]," H           /                                                        ");
+    sprintf(string[11],"                                                                      ");
+    //info
+    char stringSide[4][stdMaxChars];
+    for (int i = 0; i < 4; i++) memset(stringSide[i], 0, stdMaxChars);
+    sprintf(stringSide[0], "You are in club");
+    sprintf(stringSide[1], "Loud music plays in the background");
+    sprintf(stringSide[2], "You can interact with:");
+    sprintf(stringSide[3], "Door, Bars");
+    // here it breaks
+    putInsideBox(string, 12, 1, 1);
+    //addSideInfo(string, stringSide, 3);
+    for (int i = 0; i < 12; i++) {
       printf("%s\n", string[i]);
     }
   }
@@ -154,6 +239,6 @@ void printCareful() {
 }
 
 void printNewScreen() {
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
 
