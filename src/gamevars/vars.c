@@ -8,6 +8,7 @@ struct character dealer;
 struct gun shotgun;
 struct gun rifle;
 struct gun revolver;
+const int stdMaxChars = 200;
 
 int prepareVariables () {
     shotgun.damage = 1;

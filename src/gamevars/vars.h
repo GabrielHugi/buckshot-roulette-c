@@ -61,4 +61,7 @@ extern struct gun shotgun;
 extern struct gun rifle;
 extern struct gun revolver;
 
+// constants
+extern const int stdMaxChars;
+
 extern int prepareVariables();
