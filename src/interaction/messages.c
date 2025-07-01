@@ -2,6 +2,7 @@
 #include "../gamevars/vars.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // color pallete
 #define RESET   "\x1b[0m"
@@ -196,6 +197,12 @@ void printSecondaryLocation() {
 
 void printGameLocation(int phase) {
   if (currentGame.mode == 0) {
+    /*
+    phases:
+    0 - start
+    1 - sign the waiver
+    2 - show bullets
+    */
     if (phase == 0) {
       // the scenario
       char string[20][stdMaxChars];
@@ -280,6 +287,6 @@ void printCareful() {
 }
 
 void printNewScreen() {
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  system("clear");
 }
 
