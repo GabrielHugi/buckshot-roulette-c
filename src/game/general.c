@@ -34,6 +34,8 @@ int askLoop(int *handleValid, char *message, char **options, int optionNumber, v
   }
 }
 
+// end of functions (functions as in tools of course)
+
 int pveGame() {
   printNewScreen();
   printStartingLocation();
@@ -47,6 +49,7 @@ int pveGame() {
   words = (char *[]){ "door\n", "bars\n" };
   option = askLoop(&handleValid, "Select interaction:", words, 2, printSecondaryLocation);
   if (option == 1) {
+    printNewScreen();
     printDeath(0);
     return 1;
   }
@@ -63,7 +66,7 @@ int multiplayerGame() {
 int initiateGame() {
   // test screens
 if (1 == 1) {
-  printDeath(0);
+  printGameLocation(0);
 }
 else {
   printNewScreen();

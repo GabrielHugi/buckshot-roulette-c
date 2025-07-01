@@ -8,6 +8,7 @@ extern void printGamemodes();
 extern void printPlaymodes();
 extern void printStartingLocation();
 extern void printSecondaryLocation();
+extern void printGameLocation();
 extern void printDeath(int cause);
 extern void printNewScreen();
 extern void printCareful();

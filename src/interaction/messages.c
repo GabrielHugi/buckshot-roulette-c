@@ -82,8 +82,8 @@ void printMenu() {
 void printCustom(char string[stdMaxChars], int isInput) {
   char temp[1][stdMaxChars];
   strcpy (temp[0], string);
-  putInsideBox(temp, 1, 1, -(isInput-1));
-  printf(temp[0]);
+  putInsideBox(temp, 1, 1, 1-isInput);
+  printf("%s", temp[0]);
 }
 
 void printGamemodes() {
@@ -117,7 +117,7 @@ void printPlaymodes() {
 GAME SCREENS
 */
 void printStats() {
-  char string[6][60];
+  char string[6][stdMaxChars];
   for (int i = 0; i < 6; i++) memset(string[i], 0, 60);
   //memcpy(string[0], "-----------Player HP: %d-----------", , playerhp);
   sprintf(string[0], "-----------Player HP: %d-----------", player.hp);
@@ -187,9 +187,50 @@ void printSecondaryLocation() {
     sprintf(stringSide[3], "Door, Bars");
 
     putInsideBox(string, 12, 1, 1);
-    //addSideInfo(string, stringSide, 3);
+    addSideInfo(string, stringSide, 4);
     for (int i = 0; i < 12; i++) {
       printf("%s\n", string[i]);
+    }
+  }
+}
+
+void printGameLocation(int phase) {
+  if (currentGame.mode == 0) {
+    if (phase == 0) {
+      // the scenario
+      char string[20][stdMaxChars];
+      for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
+      sprintf(string[0], "                                                                      ");
+      sprintf(string[1], "                     /------------\\                                  ");
+      sprintf(string[2], "                    |              |                                  ");
+      sprintf(string[3], "                    | ( )      ( ) |                                  ");
+      sprintf(string[4], "                    |  _________   |                                  ");
+      sprintf(string[5], "                    |  \\......./   |                                  ");
+      sprintf(string[6], "                     \\____________/                                   ");
+      sprintf(string[7], "                     /            \\                                   ");
+      sprintf(string[8], "                    /|\\          /|\\                                  ");
+      sprintf(string[9], "                  /-------------------\\                               ");
+      sprintf(string[10],"                 |                     |                              ");
+      sprintf(string[11],"                 |                 ___ |                              ");
+      sprintf(string[12],"                 |                 |%d|D|                              ", dealer.hp);
+      sprintf(string[13],"                 |    x=======\\\\   | | |                              ");
+      sprintf(string[14],"                 |            ||   |%d|P|                              ", player.hp);
+      sprintf(string[15],"                 |                 --- |                              ");
+      sprintf(string[16],"                 |                     |                              ");
+      sprintf(string[17],"                 |                     |                              ");
+      sprintf(string[18],"                  \\-------------------/                               ");
+      sprintf(string[19],"                          Hello...                                     ");
+
+      //info
+      //char stringSide[1][stdMaxChars];
+      //for (int i = 0; i < 1; i++) memset(stringSide[i], 0, stdMaxChars);
+      //sprintf(stringSide[0], "Hello...");
+
+      putInsideBox(string, 20, 1, 1);
+      //addSideInfo(string, stringSide, 1);
+      for (int i = 0; i < 20; i++) {
+        printf("%s\n", string[i]);
+      }
     }
   }
 }
@@ -206,13 +247,13 @@ void printDeath(int cause) {
     sprintf(string[0], "                                                                      ");
     sprintf(string[1], "                                                                      ");
     sprintf(string[2], "                                                                      ");
-    sprintf(string[3], "                                                                      ");
+    sprintf(string[3], "  You are dead little bro                                             ");
     sprintf(string[4], "                                                                      ");
-    sprintf(string[5], "             |     " RED "Oo." RESET "                                                   ");
-    sprintf(string[6], "     ___     |  ___                                                   ");
-    sprintf(string[7], "  H_/   #########" RED "##|..." RESET "                                                  ");
-    sprintf(string[8], "     ___###########|                                                  ");
-    sprintf(string[9], "  __/        |  \"\"\"                                                      ");
+    sprintf(string[5], "             |     " RED "-." RESET "                                                 ");
+    sprintf(string[6], "     ___     "RED "|" RESET "  ___                                                   ");
+    sprintf(string[7], "  H_/   ###" RED "##" RESET"### " RED "  |..." RESET "                                               ");
+    sprintf(string[8], "     ___########   |                                                  ");
+    sprintf(string[9], "  __/        |  \"\"\"                                                   ");
     sprintf(string[10]," H           /                                                        ");
     sprintf(string[11],"                                                                      ");
     //info
@@ -239,6 +280,6 @@ void printCareful() {
 }
 
 void printNewScreen() {
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
 
