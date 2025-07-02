@@ -13,8 +13,9 @@ struct game {
 
 // player "object" (but let's agree to not call it object because object oriented programming is for losers)
 struct character {
+  char name[7];
   int hp;
-  char inv[8][15];
+  int inv[8];
 };
 
 struct gun {
@@ -31,6 +32,7 @@ struct gun {
 struct item {
   /*
   official items
+  -1 - null
   0 - Burner Phone, gives advice on future
   1 - Beer, ejects one shell
   2 - Adrenaline, lets you steal sum shit
@@ -42,9 +44,9 @@ struct item {
   8 - Magnifying glass, sees current round
   additions for extended mode
   9 - Rusty handgun, 50% chance to hit him for 1 hp, 50% change explode on you for 1 hp (Is an item not a main weapon, you still have the turn regardless of outcome)
-  10 - Body armor, tanks up 1 hp on the next hit but the next hit has to come in the immediate next round, otherwise the armor breaks cuz its old and shit
-  11 - Running shoes, lets you attempt to run away with wathever money you already have, 70% chance of failure
-  12 - Coffe, racks a random number of shells between 1 and 4 with the chance for 2 shells being 2/5, the rest having evenly distributed chances 
+  a (in ascii) - Body armor, tanks up 1 hp on the next hit but the next hit has to come in the immediate next round, otherwise the armor breaks cuz its old and shit
+  b - Running shoes, lets you attempt to run away with wathever money you already have, 70% chance of failure
+  c - Coffe, racks a random number of shells between 1 and 4 with the chance for 2 shells being 2/5, the rest having evenly distributed chances 
   additions for sigma mode
    - Mogging, makes your opponent look ugly and takes 1 hp from him, but there is a 20% chance that you will be the one considered ugly and your self steem will be obliterated for 2 points
    - 

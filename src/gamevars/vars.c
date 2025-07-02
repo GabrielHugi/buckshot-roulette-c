@@ -1,6 +1,7 @@
 #include "vars.h"
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct game currentGame;
 struct character player;
@@ -17,4 +18,9 @@ int prepareVariables () {
     revolver.capacity = 6;
     rifle.damage = 1;
     rifle.capacity = 30;
+    strcpy(dealer.name, "dealer");
+    for (int i = 0; i < 8; i++) {
+        player.inv[i] = -1;
+        dealer.inv[i] = -1;
+    }
 }

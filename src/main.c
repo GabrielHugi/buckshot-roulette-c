@@ -9,5 +9,6 @@ this will be done later btw first i will just do raw terminal shit
 // curent run cmd for dev use:
 // gcc src/main.c src/game/general.c src/game/handleItem.c src/gamemodes/gamemodes.c src/gamevars/vars.c src/interaction/messages.c -o main
 int main() {
+  prepareVariables();
   initiateGame();
 }

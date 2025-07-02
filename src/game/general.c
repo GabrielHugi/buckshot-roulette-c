@@ -1,6 +1,7 @@
 #include "general.h"
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "../gamevars/vars.h"
 #include "../interaction/messages.h"
 
@@ -17,11 +18,15 @@ int option;
   askLoop(&handleValid, "pick an option: ", words, 2, printStartingLocation);
 */
 // responds with position of option chosen
+void treatFGets(char *skibidi) {
+  skibidi[strlen(skibidi)-1] = '\0';
+}
+
 int askLoop(int *handleValid, char *message, char **options, int optionNumber, void (printScreen(void))) {
   while (*handleValid != 1) {
     printf("\n");
     printCustom(message, 1);
-    fgets(handle, 45, stdin);
+    fgets(handle, 45, stdin); treatFGets(handle);
     //for (int i = 0; i < optionNumber; i++) {
     //  if(strcmp(handle, options[i]) == 0) *handleValid = 1;
     //}
@@ -39,20 +44,49 @@ int askLoop(int *handleValid, char *message, char **options, int optionNumber, v
 int pveGame() {
   printNewScreen();
   printStartingLocation();
-  words = (char *[]){ "door\n", "pill\n" };
+  words = (char *[]){ "door", "pill" };
   option = askLoop(&handleValid, "Select interaction:", words, 2, printStartingLocation);
   if (option == 0) currentGame.endless = 0;
   if (option == 1) currentGame.endless = 1;
 
   printNewScreen();
   printSecondaryLocation();
-  words = (char *[]){ "door\n", "bars\n" };
+  words = (char *[]){ "door", "bars" };
   option = askLoop(&handleValid, "Select interaction:", words, 2, printSecondaryLocation);
   if (option == 1) {
     printNewScreen();
     printDeath(0);
     return 1;
   }
+
+  //da game
+  printNewScreen();
+  printGameLocation(0);
+  sleep(2);
+
+  printNewScreen();
+  printGameLocation(1);
+  while (handleValid != 1) {
+    printf("\n");
+    printCustom("Name:", 1);
+    fgets(handle, 45, stdin); treatFGets(handle);
+    //for (int i = 0; i < optionNumber; i++) {
+    //  if(strcmp(handle, options[i]) == 0) *handleValid = 1;
+    //}
+    if(strlen(handle) <= 6 && strcmp("god\n", handle)) {
+      handleValid = 1;
+    }
+    else {
+      printNewScreen();
+      printGameLocation(1);
+    }
+  } handleValid = 0;
+  strcpy(player.name, handle);
+
+  printNewScreen();
+  printGameLocation(2);
+  sleep(3);
+
 }
 
 int pvpGame() {
@@ -65,13 +99,13 @@ int multiplayerGame() {
 
 int initiateGame() {
   // test screens
-if (1 == 1) {
-  printGameLocation(0);
+if (2 == 1) {
+  printGameLocation(1);
 }
 else {
   printNewScreen();
   printMenu();
-  words = (char *[]){ "normal\n", "extended\n"};
+  words = (char *[]){ "normal", "extended"};
   option = askLoop(&handleValid, "Select option:", words, 2, printMenu);
   // sets result
   if (option == 0) currentGame.extended = 0;
@@ -79,7 +113,7 @@ else {
 
   printNewScreen();
   printGamemodes();
-  words = (char *[]){ "shotgun\n", "revolver\n", "rifle\n" };
+  words = (char *[]){ "shotgun", "revolver", "rifle" };
   option = askLoop(&handleValid, "Select option:", words, 3, printGamemodes);
   if (option == 0) currentGame.gun = 0;
   if (option == 1) currentGame.gun = 1;
@@ -87,7 +121,7 @@ else {
 
   printNewScreen();
   printPlaymodes();
-  words = (char *[]){ "pve\n", "pvp\n", "multiplayer\n" };
+  words = (char *[]){ "pve", "pvp", "multiplayer" };
   option = askLoop(&handleValid, "Select option:", words, 3, printPlaymodes);
   if (option == 0) {currentGame.mode = 0; pveGame();}
   if (option == 1) {currentGame.mode = 1; pvpGame();}
