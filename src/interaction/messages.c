@@ -131,7 +131,7 @@ GAME SCREENS
 // i might aswell just do it later
 
 void printStartingLocation() {
-  if (strcmp(currentGame.weapon->name, "shotgun" && currentGame.mode == 1) == 0) {
+  if (strcmp(currentGame.weapon->name, "shotgun") == 0 && currentGame.mode == 1) {
     // the scenario
     char string[10][stdMaxChars];
     for (int i = 0; i < 10; i++) memset(string[i], 0, stdMaxChars);
@@ -162,7 +162,7 @@ void printStartingLocation() {
 }
 
 void printSecondaryLocation() {
-  if (strcmp(currentGame.weapon->name, "shotgun" && currentGame.mode == 1) == 0) {
+  if (strcmp(currentGame.weapon->name, "shotgun") == 0 && currentGame.mode == 1) {
     // the scenario
     char string[12][stdMaxChars];
     for (int i = 0; i < 12; i++) memset(string[i], 0, stdMaxChars);
@@ -196,7 +196,7 @@ void printSecondaryLocation() {
 }
 
 void printGameLocation(int phase) {
-  if (strcmp(currentGame.weapon->name, "shotgun" && currentGame.mode == 1) == 0) {
+  if (strcmp(currentGame.weapon->name, "shotgun") == 0 && currentGame.mode == 1) {
     /*
     phases:
     0 - start
@@ -240,16 +240,16 @@ void printGameLocation(int phase) {
       sprintf(string[6], "                     \\____________/                     ");
       sprintf(string[7], "                     /            \\                     ");
       sprintf(string[8], "                    /|\\          /|\\                    ");
-      sprintf(string[9], "                  /-------------------\\      ___            ");
-      sprintf(string[10],"                 | | %c %c |     | %c %c | |    | |          ",charPlayerInv[0],charPlayerInv[1],charPlayerInv[2],charPlayerInv[3]);
-      sprintf(string[11],"                 | | %c %c |     | %c %c | |    | |          ",charPlayerInv[4],charPlayerInv[5],charPlayerInv[6],charPlayerInv[7]);
-      sprintf(string[12],"                 |                     |    | |          ");
-      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
-      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
-      sprintf(string[15],"                 | items:              |    | |          ");
-      sprintf(string[16],"                 | | %c %c |     | %c %c | |    | |          ",charDealerInv[0],charDealerInv[1],charDealerInv[2],charDealerInv[3]);
-      sprintf(string[17],"                 | | %c %c |     | %c %c | |    | |          ",charDealerInv[4],charDealerInv[5],charDealerInv[6],charDealerInv[7]);
-      sprintf(string[18],"                  \\-------------------/      \"\"\"            ");
+      sprintf(string[9], "                  /-------------------\\     ___         ");
+      sprintf(string[10],"                 | | %c %c |     | %c %c | |    | |        ",charPlayerInv[0],charPlayerInv[1],charPlayerInv[2],charPlayerInv[3]);
+      sprintf(string[11],"                 | | %c %c |     | %c %c | |    | |        ",charPlayerInv[4],charPlayerInv[5],charPlayerInv[6],charPlayerInv[7]);
+      sprintf(string[12],"                 |                     |    | |        ");
+      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |        ", dealer.hp);
+      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |        ", player.hp);
+      sprintf(string[15],"                 | items:              |    | |        ");
+      sprintf(string[16],"                 | | %c %c |     | %c %c | |    | |        ",charDealerInv[0],charDealerInv[1],charDealerInv[2],charDealerInv[3]);
+      sprintf(string[17],"                 | | %c %c |     | %c %c | |    | |        ",charDealerInv[4],charDealerInv[5],charDealerInv[6],charDealerInv[7]);
+      sprintf(string[18],"                  \\-------------------/     \"\"\"         ");
       sprintf(string[19],"Hello...");
 
       putInsideBox(string, 20, 1, 1);
@@ -331,6 +331,24 @@ void printGameLocation(int phase) {
     }
     if (phase == 3) {
       // the scenario
+      char bulletColor[currentGame.weapon->capacity][10];
+      char bullet[currentGame.weapon->capacity];
+      for (int i = 0; i < currentGame.weapon->capacity; i++) {
+        if (currentGame.weapon->loadOrder[i] == 0) {
+          strcpy(bulletColor[i], RESET);
+          bullet[i] = ' ';
+        }
+        if (currentGame.weapon->loadOrder[i] == 0) {
+          strcpy(bulletColor[i], RESET);
+          bullet[i] = 'H';
+        }
+        if (currentGame.weapon->loadOrder[i] == 0) {
+          strcpy(bulletColor[i], RED);
+          bullet[i] = 'H';
+        }
+        
+      }
+
       char charPlayerInv[8], charDealerInv[8];
       for (int i = 0; i < 8; i++) {
         charPlayerInv[i] = player.inv[i];
@@ -349,17 +367,17 @@ void printGameLocation(int phase) {
       sprintf(string[6], "                     \\____________/                     ");
       sprintf(string[7], "                     /            \\                     ");
       sprintf(string[8], "                    /|\\          /|\\                    ");
-      sprintf(string[9], "                  /-------------------\\      ___            ");
-      sprintf(string[10],"                 | | %c %c |     | %c %c | |    | |          ",charPlayerInv[0],charPlayerInv[1],charPlayerInv[2],charPlayerInv[3]);
-      sprintf(string[11],"                 | | %c %c |     | %c %c | |    | |          ",charPlayerInv[4],charPlayerInv[5],charPlayerInv[6],charPlayerInv[7]);
-      sprintf(string[12],"                 |                     |    | |          ");
-      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
-      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
-      sprintf(string[15],"                 | items:              |    | |          ");
-      sprintf(string[16],"                 | | %c %c |     | %c %c | |    | |          ",charDealerInv[0],charDealerInv[1],charDealerInv[2],charDealerInv[3]);
-      sprintf(string[17],"                 | | %c %c |     | %c %c | |    | |          ",charDealerInv[4],charDealerInv[5],charDealerInv[6],charDealerInv[7]);
-      sprintf(string[18],"                  \\-------------------/      \"\"\"            ");
-      sprintf(string[19],"Here are the rounds...");
+      sprintf(string[9], "                  /-------------------\\     ___         ");
+      sprintf(string[10],"                 | | %c %c |     | %c %c | |    |%s%c%s|        ",charPlayerInv[0],charPlayerInv[1],charPlayerInv[2],charPlayerInv[3], bulletColor[0], bullet[0], RESET);
+      sprintf(string[11],"                 | | %c %c |     | %c %c | |    |%s%c%s|        ",charPlayerInv[4],charPlayerInv[5],charPlayerInv[6],charPlayerInv[7], bulletColor[1], bullet[1], RESET);
+      sprintf(string[12],"                 |                     |    |%s%c%s|        ", bulletColor[2], bullet[2], RESET);
+      sprintf(string[13],"                 |    ========\\\\   |%d|D|    |%s%c%s|        ", dealer.hp, bulletColor[3], bullet[3], RESET);
+      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    |%s%c%s|        ", player.hp, bulletColor[4], bullet[4], RESET);
+      sprintf(string[15],"                 | items:              |    |%s%c%s|        ", bulletColor[5], bullet[5], RESET);
+      sprintf(string[16],"                 | | %c %c |     | %c %c | |    |%s%c%s|        ",charDealerInv[0],charDealerInv[1],charDealerInv[2],charDealerInv[3], bulletColor[6], bullet[6], RESET);
+      sprintf(string[17],"                 | | %c %c |     | %c %c | |    |%s%c%s|        ",charDealerInv[4],charDealerInv[5],charDealerInv[6],charDealerInv[7], bulletColor[7], bullet[7], RESET);
+      sprintf(string[18],"                  \\-------------------/     \"\"\"         ");
+      sprintf(string[19],"Here are the rounds");
 
       putInsideBox(string, 20, 1, 1);
       //addSideInfo(string, stringSide, stringSideSize);

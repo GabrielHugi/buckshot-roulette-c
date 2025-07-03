@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include "../gamevars/vars.h"
 #include "../interaction/messages.h"
+#include "handleGame.h"
 
 //global handles et cetera
 char handle[50];
@@ -103,6 +104,9 @@ int multiplayerGame() {
 int initiateGame() {
   // test screens
 if (1 == 1) {
+  currentGame.weapon = &shotgun;
+  currentGame.mode = 1;
+  generateShells(0);
   printGameLocation(3);
 }
 else {

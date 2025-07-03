@@ -1,4 +1,5 @@
 #include "../gamevars/vars.h"
+#include "../tools/tools.h"
 #include "handleGame.h"
 #include <time.h>
 #include <stdlib.h>
@@ -7,8 +8,10 @@ void prepareGame() {
   srand(time(NULL));
 }
 
-void sortUpSheels() {
-  
+void sortUpShells() {
+  for (int i = 0; i < currentGame.weapon->capacity; i++) {
+
+  }
 }
 
 void generateShells(int pre) {
@@ -22,12 +25,14 @@ void generateShells(int pre) {
       currentGame.weapon->loadOrder[i] = bullet;
       if (bullet != 0) bullets++;
     }
+    currentGame.weapon->currentBullets = bullets;
   }
   if (pre == 1) {
     //uhh idk
+    // if (strcmp(currentGame.weapon->name, "shotgun" && currentGame.mode == 1) == 0) {
   }
 }
 
 void shuffleShells() {
-  
+
 }
