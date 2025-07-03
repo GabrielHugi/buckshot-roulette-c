@@ -87,6 +87,9 @@ int pveGame() {
   printGameLocation(2);
   sleep(3);
 
+  // starting the actual gameplay
+
+
 }
 
 int pvpGame() {
@@ -99,8 +102,8 @@ int multiplayerGame() {
 
 int initiateGame() {
   // test screens
-if (2 == 1) {
-  printGameLocation(1);
+if (1 == 1) {
+  printGameLocation(3);
 }
 else {
   printNewScreen();
@@ -115,9 +118,9 @@ else {
   printGamemodes();
   words = (char *[]){ "shotgun", "revolver", "rifle" };
   option = askLoop(&handleValid, "Select option:", words, 3, printGamemodes);
-  if (option == 0) currentGame.gun = 0;
-  if (option == 1) currentGame.gun = 1;
-  if (option == 2) currentGame.gun = 2;
+  if (option == 0) currentGame.weapon = &shotgun;
+  if (option == 1) currentGame.weapon = &revolver;
+  if (option == 2) currentGame.weapon = &rifle;
 
   printNewScreen();
   printPlaymodes();

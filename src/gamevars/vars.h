@@ -1,11 +1,12 @@
 #pragma once
+struct gun;
 
 struct game {
   // 0 = shotgun, 1 = revolver, 2 = rifle
-  int gun; 
+  struct gun *weapon;
   // 0 = no, 1 = yes
   int extended;
-  // mode: 1 = pve, 2 = pvp(local), 3 = pvp(internet)
+  // mode: 1 = pve, 2 = pvp(local), 3 = pvp(internet) --- idk why this isn't 0 indexed but it's joever
   int mode;
   // 0 = story, 1 = endless
   int endless;
@@ -27,6 +28,8 @@ struct gun {
   int capacity;
   // current bullets
   int currentBullets;
+  // name for redundancy and object shit idk also useful so i don't have to waste time coding this garbage
+  char name[10];
 };
 
 struct item {

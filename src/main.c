@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "game/general.h"
 #include "gamevars/vars.h"
+#include "game/handleGame.h"
 /*
 remembr to search how to monopolize the terminal screen like gnu nano does
 this will be done later btw first i will just do raw terminal shit
@@ -10,5 +11,6 @@ this will be done later btw first i will just do raw terminal shit
 // gcc src/main.c src/game/general.c src/game/handleItem.c src/gamemodes/gamemodes.c src/gamevars/vars.c src/interaction/messages.c -o main
 int main() {
   prepareVariables();
+  prepareGame();
   initiateGame();
 }
