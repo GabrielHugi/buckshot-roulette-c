@@ -107,9 +107,8 @@ if (1 == 1) {
   currentGame.weapon = &shotgun;
   currentGame.mode = 1;
   generateShells(0);
-  //sortUpShells(0, currentGame.weapon->capacity-1;);
-  //printGameLocation(3);
-  printDeath(0);
+  sortUpShells();
+  printGameLocation(3);
 }
 else {
   printNewScreen();

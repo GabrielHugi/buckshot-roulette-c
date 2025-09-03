@@ -51,7 +51,7 @@ void putInsideBox (char items[][stdMaxChars], int lines, int leftBorder, int rig
     char fillLeft = '\0'; char fillRight = '\0';
     if (leftBorder == 1) fillLeft = ' '; if (rightBorder == 1) fillRight = ' ';
     fillIn(leftStr, left, fillLeft); fillIn(rightStr, right, fillRight);
-    char temp[85]; strcpy(temp, items[i]);
+    char temp[max]; strcpy(temp, items[i]);
     sprintf(items[i], "%s%s%s", leftStr, temp, rightStr);
   }
 }

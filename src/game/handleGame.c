@@ -8,30 +8,21 @@ void prepareGame() {
   srand(time(NULL));
 }
 
-void sortUpShells(int left, int right) {
-  // quicksort
-  int pivot = rand() % currentGame.weapon->capacity;
-  int pivotVal = currentGame.weapon->loadOrder[pivot];
+void sortUpShells() {
+  int left = 0, right = currentGame.weapon->capacity;
   byte anew[currentGame.weapon->capacity];
-  for (int i = 0; i < currentGame.weapon->capacity; i++) {
-    if (currentGame.weapon->loadOrder[i] <= pivotVal) {
+  for (int i = 0; i <= currentGame.weapon->capacity; i++) {
+    if (currentGame.weapon->loadOrder[i] >= 1) {
       anew[left] = currentGame.weapon->loadOrder[i];
       left++;
     }
-    if (currentGame.weapon->loadOrder[i] > pivotVal) {
+    if (currentGame.weapon->loadOrder[i] < 1) {
       anew[right] = currentGame.weapon->loadOrder[i];
       right--;
     }
   }
-
-
-
-
-
-
-
-    
-
+  for (int i = 0; i < currentGame.weapon->capacity; i++) currentGame.weapon->loadOrder[i] = anew[i];
+  return;
 }
 
 void generateShells(int pre) {
