@@ -42,7 +42,7 @@ int len = 0;
 }
 
 void putInsideBox (char items[][stdMaxChars], int lines, int leftBorder, int rightBorder) {
-  int max = 80;
+  int max = 200;
   for (int i = 0; i < lines; i++) {
     int len = strlenIgnoreSpecialCodes(items[i]);
     int left = (max-len)/2; int right = (max-len)/2;
@@ -395,6 +395,7 @@ void printDeath(int cause) {
   0 - commiting suicide by jumping off at the club scene
   
   */
+  // this shit is overflowing for sum reason idk why so find out why you stupid
   if (cause == 0) {
     char string[12][stdMaxChars];
     for (int i = 0; i < 12; i++) memset(string[i], 0, stdMaxChars);
@@ -405,7 +406,7 @@ void printDeath(int cause) {
     sprintf(string[4], "                                                                      ");
     sprintf(string[5], "             |     " RED "-." RESET "                                                 ");
     sprintf(string[6], "     ___     "RED "|" RESET "  ___                                                   ");
-    sprintf(string[7], "  H_/   ###" RED "##" RESET"### " RED "   |..." RESET "                                               ");
+    sprintf(string[7], "  H_/   ###" RED "##" RESET "### " RED "   |..." RESET "                                               ");
     sprintf(string[8], "     ___########   |                                                  ");
     sprintf(string[9], "  __/        |  \"\"\"                                                   ");
     sprintf(string[10]," H           /                                                        ");
