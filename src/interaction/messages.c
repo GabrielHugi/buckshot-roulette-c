@@ -338,11 +338,11 @@ void printGameLocation(int phase) {
           strcpy(bulletColor[i], RESET);
           bullet[i] = ' ';
         }
-        if (currentGame.weapon->loadOrder[i] == 0) {
+        if (currentGame.weapon->loadOrder[i] == 1) {
           strcpy(bulletColor[i], RESET);
           bullet[i] = 'H';
         }
-        if (currentGame.weapon->loadOrder[i] == 0) {
+        if (currentGame.weapon->loadOrder[i] == 2) {
           strcpy(bulletColor[i], RED);
           bullet[i] = 'H';
         }
@@ -405,7 +405,7 @@ void printDeath(int cause) {
     sprintf(string[4], "                                                                      ");
     sprintf(string[5], "             |     " RED "-." RESET "                                                 ");
     sprintf(string[6], "     ___     "RED "|" RESET "  ___                                                   ");
-    sprintf(string[7], "  H_/   ###" RED "##" RESET"### " RED "  |..." RESET "                                               ");
+    sprintf(string[7], "  H_/   ###" RED "##" RESET"### " RED "   |..." RESET "                                               ");
     sprintf(string[8], "     ___########   |                                                  ");
     sprintf(string[9], "  __/        |  \"\"\"                                                   ");
     sprintf(string[10]," H           /                                                        ");

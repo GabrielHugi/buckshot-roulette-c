@@ -8,14 +8,35 @@ void prepareGame() {
   srand(time(NULL));
 }
 
-void sortUpShells() {
+void sortUpShells(int left, int right) {
+  // quicksort
+  int pivot = rand() % currentGame.weapon->capacity;
+  int pivotVal = currentGame.weapon->loadOrder[pivot];
+  byte anew[currentGame.weapon->capacity];
   for (int i = 0; i < currentGame.weapon->capacity; i++) {
-
+    if (currentGame.weapon->loadOrder[i] <= pivotVal) {
+      anew[left] = currentGame.weapon->loadOrder[i];
+      left++;
+    }
+    if (currentGame.weapon->loadOrder[i] > pivotVal) {
+      anew[right] = currentGame.weapon->loadOrder[i];
+      right--;
+    }
   }
+
+
+
+
+
+
+
+    
+
 }
 
 void generateShells(int pre) {
   // pre is for story mode
+  // wtf is pre i forgot
   // gun
   if (pre == 0) {
     unsigned char bullets = 0;

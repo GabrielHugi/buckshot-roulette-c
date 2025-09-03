@@ -72,3 +72,7 @@ extern struct gun revolver;
 extern const int stdMaxChars;
 
 extern int prepareVariables();
+
+
+// convenient things
+typedef unsigned char byte;
