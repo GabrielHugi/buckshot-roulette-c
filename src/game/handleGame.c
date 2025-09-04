@@ -48,3 +48,13 @@ void generateShells(int pre) {
 void shuffleShells() {
 
 }
+
+void popAmmo() {
+    if (currentGame.weapon->currentBullets == 0) return;
+    int first = 0, last = currentGame.weapon->currentBullets-1;
+    for (int i = 1; i < last; i++) {
+      currentGame.weapon->loadOrder[i-1] = currentGame.weapon->loadOrder[i];
+    }
+    currentGame.weapon->loadOrder[last] = 0;
+    return;
+}
