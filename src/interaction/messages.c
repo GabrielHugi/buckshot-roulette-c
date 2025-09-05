@@ -42,7 +42,7 @@ int len = 0;
 }
 
 void putInsideBox (char items[][stdMaxChars], int lines, int leftBorder, int rightBorder) {
-  int max = 200;
+  int max = stdMaxChars-50;
   for (int i = 0; i < lines; i++) {
     int len = strlenIgnoreSpecialCodes(items[i]);
     int left = (max-len)/2; int right = (max-len)/2;
