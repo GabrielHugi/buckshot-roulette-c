@@ -26,4 +26,6 @@ int prepareVariables () {
         player.inv[i] = -1;
         dealer.inv[i] = -1;
     }
+    currentGame.phase = 0;
+    currentGame.over = 0;
 }

@@ -28,6 +28,7 @@ void sortUpShells() {
 void generateShells(int pre) {
   // pre is for story mode
   // wtf is pre i forgot
+  // oh yeah its cuz story mode has non random
   // gun
   if (pre == 0) {
     unsigned char bullets = 0;
@@ -45,6 +46,7 @@ void generateShells(int pre) {
   }
 }
 
+// this prob useless
 void shuffleShells() {
 
 }

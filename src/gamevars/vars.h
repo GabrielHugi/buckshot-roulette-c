@@ -10,6 +10,21 @@ struct game {
   int mode;
   // 0 = story, 1 = endless
   int endless;
+  // phase depends on if its story or endless or wathever
+  //story
+  /*
+    phases:
+    0 - start
+    1 - sign the waiver
+    2 - waver signed
+    3 - show bullets
+    */
+  int phase;
+  // who's turn, 0 - player, 1 - dealer
+  int turn;
+  // over? if so what cause
+  // 0 = not, 1 = fall,
+  int over;
 };
 
 // player "object" (but let's agree to not call it object because object oriented programming is for losers)

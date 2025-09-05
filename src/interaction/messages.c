@@ -195,7 +195,7 @@ void printSecondaryLocation() {
   }
 }
 
-void printGameLocation(int phase) {
+void printGameLocation() {
   if (strcmp(currentGame.weapon->name, "shotgun") == 0 && currentGame.mode == 1) {
     /*
     phases:
@@ -220,7 +220,7 @@ void printGameLocation(int phase) {
     if (currentGame.extended == 1) {
       // continue the sprintfs with the shit extended or sum 
     }
-    if (phase == 0) {
+    if (currentGame.phase == 0) {
       // the scenario
       char charPlayerInv[8], charDealerInv[8];
       for (int i = 0; i < 8; i++) {
@@ -259,7 +259,7 @@ void printGameLocation(int phase) {
       }
       return;
     }
-    if (phase == 1) {
+    if (currentGame.phase == 1) {
       // the scenario
       char string[20][stdMaxChars];
       for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
@@ -291,7 +291,7 @@ void printGameLocation(int phase) {
       }
       return;
     }
-    if (phase == 2) {
+    if (currentGame.phase == 2) {
       // the scenario
       char displayName[7];
       // this shi fills the displayname with spaces so it makes 6 characters so format n shit doesn't break
@@ -329,7 +329,7 @@ void printGameLocation(int phase) {
       }
       return;
     }
-    if (phase == 3) {
+    if (currentGame.phase == 3) {
       // the scenario
       char bulletColor[currentGame.weapon->capacity][10];
       char bullet[currentGame.weapon->capacity];
@@ -389,14 +389,14 @@ void printGameLocation(int phase) {
   }
 }
 
-void printDeath(int cause) {
+void printDeath() {
   /*
   the causes for one's death:
   0 - commiting suicide by jumping off at the club scene
   
   */
   // this shit is overflowing for sum reason idk why so find out why you stupid
-  if (cause == 0) {
+  if (currentGame.over == 1) {
     char string[12][stdMaxChars];
     for (int i = 0; i < 12; i++) memset(string[i], 0, stdMaxChars);
     sprintf(string[0], "                                                                      ");
