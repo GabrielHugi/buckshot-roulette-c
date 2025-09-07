@@ -156,12 +156,18 @@ int pveGame() {
 
     previousRound = currentGame.rounds;
     
-    while (currentGame.weapon->currentBullets != 0) {
+    while (currentGame.weapon->currentBullets != 0 && player.hp > 0 && dealer.hp > 0) {
       if (current->id == 0) {
         //player turn
         currentGame.phase = 4;
         printNewScreen();
         printGameLocation();
+        // test
+        for (int i = 0; i < currentGame.weapon->capacity; i++) {
+          printf("%d ", currentGame.weapon->loadOrder[i]);
+        }
+        printf("\n");
+        // test
         option = askNumericLoop(&handleValid, "Choose:", 1, 2, printGameLocation);
         if (option == 1) target = &player;
         else target = &dealer;
@@ -176,6 +182,12 @@ int pveGame() {
         // for now will just always shoot for testing
         currentGame.phase = 5;
         printNewScreen();
+        // test
+        for (int i = 0; i < currentGame.weapon->capacity; i++) {
+          printf("%d ", currentGame.weapon->loadOrder[i]);
+        }
+        printf("\n");
+        // test
         printGameLocation();
         option = 2;
         if (option == 1) target = &dealer;

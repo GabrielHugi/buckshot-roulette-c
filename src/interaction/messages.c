@@ -495,10 +495,10 @@ void printGameLocation() {
       // the scenario
       char string[20][stdMaxChars];
       for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
-      sprintf(string[0], "                                                         ");
-      sprintf(string[1], "                                                         ");
-      sprintf(string[2], "                                                         ");
-      sprintf(string[3], "                                                         ");
+      sprintf(string[0], "                 /----------------------\\                ");
+      sprintf(string[1], "                 |                      |                ");
+      sprintf(string[2], "                 |  YES            NO   |                ");
+      sprintf(string[3], "                 |                      |                ");
       sprintf(string[4], "                 |                      |                ");
       sprintf(string[5], "                 \\_____________________/                 ");
       sprintf(string[6], "                 _|_   _|_     _|_   _|_                 ");
@@ -511,10 +511,10 @@ void printGameLocation() {
       sprintf(string[13],"              |                           |              ");
       sprintf(string[14],"              |                           |              ");
       sprintf(string[15],"______________|___________________________|______________");
-      sprintf(string[16],"              |###########################|              ");
-      sprintf(string[17],"              |###########################|              ");
-      sprintf(string[18],"                                                         ");
-      sprintf(string[19],"                                                         ");
+      sprintf(string[16],"|             |###########################|             |");
+      sprintf(string[17],"|             |###########################|             |");
+      sprintf(string[18],"|                       1 - yes                         |");
+      sprintf(string[19],"|                       2 - no                          |");
 
       putInsideBox(string, 20, 1, 1);
       //addSideInfo(string, stringSide, stringSideSize);
