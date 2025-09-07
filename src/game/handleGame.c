@@ -100,8 +100,21 @@ struct character *resolveTurn(struct character *origin, struct character *target
     currentGame.weapon->currentBullets--;
     if (target == origin) return opponent; 
   }
+  if (currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] == 1) {
+    currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] = 0;
+    currentGame.weapon->currentBullets--; 
+  }
   resolveEndgame();
   return target;
+}
+
+void resolvePrize() {
+  if (currentGame.mode == 0) {
+    // do not care
+  }
+  if (currentGame.mode == 1) {
+    
+  }
 }
 
 // this prob useless

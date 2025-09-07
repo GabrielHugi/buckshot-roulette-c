@@ -121,16 +121,7 @@ void printPlaymodes() {
   }
 }
 
-void printPlayOption() {
-  char string[2][stdMaxChars];
-  for (int i = 0; i < 2; i++) memset(string[i], 0, stdMaxChars);
-  sprintf(string[0], "1 - shoot yourself");
-  sprintf(string[1], "2 - shoot dealer");
-  putInsideBox(string, 2, 1, 1);
-  for (int i = 0; i < 2; i++) {
-    printf("%s\n", string[i]);
-  }
-}
+
 
 
 /*
@@ -398,7 +389,75 @@ void printGameLocation() {
       }
       return;
     }
+
     if (currentGame.phase == 4) {
+      // the scenario
+      char string[21][stdMaxChars];
+      for (int i = 0; i < 21; i++) memset(string[i], 0, stdMaxChars);
+      sprintf(string[0], "                                                        ");
+      sprintf(string[1], "                     /------------\\                     ");
+      sprintf(string[2], "                    |              |                    ");
+      sprintf(string[3], "                    | (O)      (O) |                    ");
+      sprintf(string[4], "                    |  _________   |                    ");
+      sprintf(string[5], "                    |  \\......./   |                    ");
+      sprintf(string[6], "                     \\____________/                     ");
+      sprintf(string[7], "                     /            \\                     ");
+      sprintf(string[8], "                    /|\\          /|\\                    ");
+      sprintf(string[9], "                  /-------------------\\     ___          ");
+      sprintf(string[10],"                 | |     |     |     | |    | |          ");
+      sprintf(string[11],"                 | |     |     |     | |    | |          ");
+      sprintf(string[12],"                 |                     |    | |          ");
+      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
+      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
+      sprintf(string[15],"                 | items:              |    | |          ");
+      sprintf(string[16],"                 | |     |     |     | |    | |          ");
+      sprintf(string[17],"                 | |     |     |     | |    | |          ");
+      sprintf(string[18],"                  \\-------------------/     \"\"\"          ");
+      sprintf(string[19],"1 - shoot yourself");
+      sprintf(string[20],"2 - shoot dealer");
+      putInsideBox(string, 21, 1, 1);
+      //addSideInfo(string, stringSide, stringSideSize);
+      for (int i = 0; i < 21; i++) {
+        printf("%s\n", string[i]);
+      }
+      return;
+    }
+
+    if (currentGame.phase == 5) {
+      // the scenario
+      char string[20][stdMaxChars];
+      for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
+      sprintf(string[0], "                                                        ");
+      sprintf(string[1], "                     /------------\\                     ");
+      sprintf(string[2], "                    |              |                    ");
+      sprintf(string[3], "                    | (O)      (O) |                    ");
+      sprintf(string[4], "                    |  _________   |                    ");
+      sprintf(string[5], "                    |  \\......./   |                    ");
+      sprintf(string[6], "                     \\____________/                     ");
+      sprintf(string[7], "                     /            \\                     ");
+      sprintf(string[8], "                    /|\\          /|\\                    ");
+      sprintf(string[9], "                  /-------------------\\     ___          ");
+      sprintf(string[10],"                 | |     |     |     | |    | |          ");
+      sprintf(string[11],"                 | |     |     |     | |    | |          ");
+      sprintf(string[12],"                 |                     |    | |          ");
+      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
+      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
+      sprintf(string[15],"                 | items:              |    | |          ");
+      sprintf(string[16],"                 | |     |     |     | |    | |          ");
+      sprintf(string[17],"                 | |     |     |     | |    | |          ");
+      sprintf(string[18],"                  \\-------------------/     \"\"\"          ");
+      sprintf(string[19],"your turn vro :skull:");
+
+      putInsideBox(string, 20, 1, 1);
+      //addSideInfo(string, stringSide, stringSideSize);
+      for (int i = 0; i < 20; i++) {
+        printf("%s\n", string[i]);
+      }
+      return;
+    }
+
+    // 100's - outcome screens (eg, dealer shot himself)
+    if (currentGame.phase == 100) {
       // the scenario
       char string[20][stdMaxChars];
       for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
@@ -431,30 +490,31 @@ void printGameLocation() {
       return;
     }
 
-    if (currentGame.phase == 5) {
+    // 200's - ending screens (eg, play again)
+    if (currentGame.phase == 200) {
       // the scenario
       char string[20][stdMaxChars];
       for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
-      sprintf(string[0], "                                                        ");
-      sprintf(string[1], "                     /------------\\                     ");
-      sprintf(string[2], "                    |              |                    ");
-      sprintf(string[3], "                    | (O)      (O) |                    ");
-      sprintf(string[4], "                    |  _________   |                    ");
-      sprintf(string[5], "                    |  \\......./   |                    ");
-      sprintf(string[6], "                     \\____________/                     ");
-      sprintf(string[7], "                     /            \\                     ");
-      sprintf(string[8], "                    /|\\          /|\\                    ");
-      sprintf(string[9], "                  /-------------------\\     ___          ");
-      sprintf(string[10],"                 | |     |     |     | |    | |          ");
-      sprintf(string[11],"                 | |     |     |     | |    | |          ");
-      sprintf(string[12],"                 |                     |    | |          ");
-      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
-      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
-      sprintf(string[15],"                 | items:              |    | |          ");
-      sprintf(string[16],"                 | |     |     |     | | |          ");
-      sprintf(string[17],"                 | |     |     |     | |    | |          ");
-      sprintf(string[18],"                  \\-------------------/     \"\"\"          ");
-      sprintf(string[19],"your turn vro :skull:");
+      sprintf(string[0], "                                                         ");
+      sprintf(string[1], "                                                         ");
+      sprintf(string[2], "                                                         ");
+      sprintf(string[3], "                                                         ");
+      sprintf(string[4], "                 |                      |                ");
+      sprintf(string[5], "                 \\_____________________/                 ");
+      sprintf(string[6], "                 _|_   _|_     _|_   _|_                 ");
+      sprintf(string[7], "                |   | |   |   |   | |   |                ");
+      sprintf(string[8], "              __|___|_|___|___|___|_|___|__              ");
+      sprintf(string[9], "             |_____________________________|             ");
+      sprintf(string[10],"              |                           |              ");
+      sprintf(string[11],"              |  DOUBLE    OR    NOTHING  |              ");
+      sprintf(string[12],"              |                           |              ");
+      sprintf(string[13],"              |                           |              ");
+      sprintf(string[14],"              |                           |              ");
+      sprintf(string[15],"______________|___________________________|______________");
+      sprintf(string[16],"              |###########################|              ");
+      sprintf(string[17],"              |###########################|              ");
+      sprintf(string[18],"                                                         ");
+      sprintf(string[19],"                                                         ");
 
       putInsideBox(string, 20, 1, 1);
       //addSideInfo(string, stringSide, stringSideSize);

@@ -31,4 +31,6 @@ int prepareVariables () {
     currentGame.phase = 0;
     currentGame.over = 0;
     currentGame.winner = 0;
+    currentGame.prize = 0;
+    currentGame.rounds = 0;
 }

@@ -1,8 +1,11 @@
 #pragma once
+#include <time.h>
 typedef unsigned char byte;
 struct gun;
 
 struct game {
+  // prize
+  long int prize;
   // 0 = shotgun, 1 = revolver, 2 = rifle
   struct gun *weapon;
   // 0 = no, 1 = yes
@@ -29,6 +32,10 @@ struct game {
   // who won
   // 0 = none, 1 = player, 2 = dealer
   byte winner;
+  // rounds for endless
+  int rounds;
+  // round start time
+  time_t roundStart;
 };
 
 // player "object" (but let's agree to not call it object because object oriented programming is for losers, so we call it based C structure for based code devs)
