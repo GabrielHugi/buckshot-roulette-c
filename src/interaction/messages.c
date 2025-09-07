@@ -121,6 +121,17 @@ void printPlaymodes() {
   }
 }
 
+void printPlayOption() {
+  char string[2][stdMaxChars];
+  for (int i = 0; i < 2; i++) memset(string[i], 0, stdMaxChars);
+  sprintf(string[0], "1 - shoot yourself");
+  sprintf(string[1], "2 - shoot dealer");
+  putInsideBox(string, 2, 1, 1);
+  for (int i = 0; i < 2; i++) {
+    printf("%s\n", string[i]);
+  }
+}
+
 
 /*
 GAME SCREENS
@@ -159,6 +170,7 @@ void printStartingLocation() {
       printf("%s\n", string[i]);
     }
   }
+  else printf("WRroong\n");
 }
 
 void printSecondaryLocation() {
@@ -386,6 +398,71 @@ void printGameLocation() {
       }
       return;
     }
+    if (currentGame.phase == 4) {
+      // the scenario
+      char string[20][stdMaxChars];
+      for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
+      sprintf(string[0], "                                                        ");
+      sprintf(string[1], "                     /------------\\                     ");
+      sprintf(string[2], "                    |              |                    ");
+      sprintf(string[3], "                    | (O)      (O) |                    ");
+      sprintf(string[4], "                    |  _________   |                    ");
+      sprintf(string[5], "                    |  \\......./   |                    ");
+      sprintf(string[6], "                     \\____________/                     ");
+      sprintf(string[7], "                     /            \\                     ");
+      sprintf(string[8], "                    /|\\          /|\\                    ");
+      sprintf(string[9], "                  /-------------------\\     ___          ");
+      sprintf(string[10],"                 | |     |     |     | |    | |          ");
+      sprintf(string[11],"                 | |     |     |     | |    | |          ");
+      sprintf(string[12],"                 |                     |    | |          ");
+      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
+      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
+      sprintf(string[15],"                 | items:              |    | |          ");
+      sprintf(string[16],"                 | |     |     |     | | |          ");
+      sprintf(string[17],"                 | |     |     |     | |    | |          ");
+      sprintf(string[18],"                  \\-------------------/     \"\"\"          ");
+      sprintf(string[19],"your turn vro :skull:");
+
+      putInsideBox(string, 20, 1, 1);
+      //addSideInfo(string, stringSide, stringSideSize);
+      for (int i = 0; i < 20; i++) {
+        printf("%s\n", string[i]);
+      }
+      return;
+    }
+
+    if (currentGame.phase == 5) {
+      // the scenario
+      char string[20][stdMaxChars];
+      for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
+      sprintf(string[0], "                                                        ");
+      sprintf(string[1], "                     /------------\\                     ");
+      sprintf(string[2], "                    |              |                    ");
+      sprintf(string[3], "                    | (O)      (O) |                    ");
+      sprintf(string[4], "                    |  _________   |                    ");
+      sprintf(string[5], "                    |  \\......./   |                    ");
+      sprintf(string[6], "                     \\____________/                     ");
+      sprintf(string[7], "                     /            \\                     ");
+      sprintf(string[8], "                    /|\\          /|\\                    ");
+      sprintf(string[9], "                  /-------------------\\     ___          ");
+      sprintf(string[10],"                 | |     |     |     | |    | |          ");
+      sprintf(string[11],"                 | |     |     |     | |    | |          ");
+      sprintf(string[12],"                 |                     |    | |          ");
+      sprintf(string[13],"                 |    ========\\\\   |%d|D|    | |          ", dealer.hp);
+      sprintf(string[14],"                 |     \"\"\"    ||   |%d|P|    | |          ", player.hp);
+      sprintf(string[15],"                 | items:              |    | |          ");
+      sprintf(string[16],"                 | |     |     |     | | |          ");
+      sprintf(string[17],"                 | |     |     |     | |    | |          ");
+      sprintf(string[18],"                  \\-------------------/     \"\"\"          ");
+      sprintf(string[19],"your turn vro :skull:");
+
+      putInsideBox(string, 20, 1, 1);
+      //addSideInfo(string, stringSide, stringSideSize);
+      for (int i = 0; i < 20; i++) {
+        printf("%s\n", string[i]);
+      }
+      return;
+    }
   }
 }
 
@@ -435,6 +512,10 @@ void printCareful() {
 }
 
 void printNewScreen() {
-  system("clear");
+  #if defined(_WIN32) || defined(_WIN64)
+    system("cls");
+  #else
+    system("clear");
+  #endif
 }
 

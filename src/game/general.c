@@ -61,12 +61,14 @@ int pveGame() {
   }
 
   //da game
+  currentGame.phase = 0;
   printNewScreen();
-  printGameLocation(0);
+  printGameLocation();
   sleep(2);
 
+  currentGame.phase = 1;
   printNewScreen();
-  printGameLocation(1);
+  printGameLocation();
   while (handleValid != 1) {
     printf("\n");
     printCustom("Name:", 1);
@@ -79,17 +81,74 @@ int pveGame() {
     }
     else {
       printNewScreen();
-      printGameLocation(1);
+      printGameLocation();
     }
   } handleValid = 0;
   strcpy(player.name, handle);
 
+  currentGame.phase = 2;
   printNewScreen();
-  printGameLocation(2);
+  printGameLocation();
   sleep(3);
 
   // starting the actual gameplay
 
+  while (currentGame.over == 0) {
+    //per turn vars
+    byte option;
+    struct character *current = &player;
+    struct character *target = &dealer;
+
+    //show hands + prepare round
+    generateShells(0);
+    generateHP();
+    currentGame.phase = 3;
+    printNewScreen();
+    printGameLocation();
+    sleep(3);
+    
+    while (currentGame.weapon->currentBullets != 0) {
+      //player turn
+      currentGame.phase = 4;
+      printNewScreen();
+      printGameLocation();
+      printPlayOption();
+      while (handleValid != 1) {
+        printf("\n");
+        printCustom("Choose:", 1);
+        scanf("%hhu", &option);
+        while (getchar() != '\n');
+        if(option == 1 || option == 2) {
+          handleValid = 1;
+        }
+        else {
+          printNewScreen();
+          printGameLocation();
+          printPlayOption();
+        }
+      } handleValid = 0;
+      if (option == 1) target = &player;
+      else target = &dealer;
+      current = resolveTurn(current, target, &dealer);
+
+      // result screen
+      sleep(3);
+
+      //dealer turn
+      // for now will just always shoot for testing
+      currentGame.phase = 5;
+      printNewScreen();
+      printGameLocation();
+      printPlayOption();
+      option = 2;
+      if (option == 1) target = &dealer;
+      else target = &player;
+      current = resolveTurn(current, target, &player);
+
+      // result screen
+      sleep(3);
+    }
+  }
 
 }
 
@@ -103,12 +162,13 @@ int multiplayerGame() {
 
 int initiateGame() {
   // test screens
-if (1 == 1) {
+if (2 == 1) {
   currentGame.weapon = &shotgun;
   currentGame.mode = 1;
   generateShells(0);
   sortUpShells();
-  printGameLocation(3);
+  currentGame.phase = 3;
+  printGameLocation();
 }
 else {
   printNewScreen();
@@ -131,9 +191,9 @@ else {
   printPlaymodes();
   words = (char *[]){ "pve", "pvp", "multiplayer" };
   option = askLoop(&handleValid, "Select option:", words, 3, printPlaymodes);
-  if (option == 0) {currentGame.mode = 0; pveGame();}
-  if (option == 1) {currentGame.mode = 1; pvpGame();}
-  if (option == 2) {currentGame.mode = 2; multiplayerGame();}
+  if (option == 0) {currentGame.mode = 1; pveGame();}
+  if (option == 1) {currentGame.mode = 2; pvpGame();}
+  if (option == 2) {currentGame.mode = 3; multiplayerGame();}
 
 
 

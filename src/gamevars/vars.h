@@ -1,15 +1,16 @@
 #pragma once
+typedef unsigned char byte;
 struct gun;
 
 struct game {
   // 0 = shotgun, 1 = revolver, 2 = rifle
   struct gun *weapon;
   // 0 = no, 1 = yes
-  int extended;
+  byte extended;
   // mode: 1 = pve, 2 = pvp(local), 3 = pvp(internet) --- idk why this isn't 0 indexed but it's joever
-  int mode;
+  byte mode;
   // 0 = story, 1 = endless
-  int endless;
+  byte endless;
   // phase depends on if its story or endless or wathever
   //story
   /*
@@ -19,30 +20,40 @@ struct game {
     2 - waver signed
     3 - show bullets
     */
-  int phase;
+  byte phase;
   // who's turn, 0 - player, 1 - dealer
-  int turn;
+  byte turn;
   // over? if so what cause
-  // 0 = not, 1 = fall,
-  int over;
+  // 0 = not, 1 = fall, 2 = shot to death
+  byte over;
+  // who won
+  // 0 = none, 1 = player, 2 = dealer
+  byte winner;
 };
 
-// player "object" (but let's agree to not call it object because object oriented programming is for losers)
+// player "object" (but let's agree to not call it object because object oriented programming is for losers, so we call it based C structure for based code devs)
 struct character {
+  /*
+  id is for uniquely identifying which character is which. currently we only have offline so only
+  player and dealer so we can just make it easy and call 
+  0 = player
+  1 = dealer  
+  */
+  byte id;
   char name[7];
-  int hp;
-  int inv[8];
+  byte hp;
+  byte inv[8];
 };
 
 struct gun {
   // 0 = nothing, 1 = blank, 2 = live
-  int loadOrder[31];
+  byte loadOrder[31];
   // ammount of hp this takes
-  int damage;
+  byte damage;
   // max bullets
-  int capacity;
+  byte capacity;
   // current bullets
-  int currentBullets;
+  byte currentBullets;
   // name for redundancy and object shit idk also useful so i don't have to waste time coding this garbage
   char name[10];
 };

@@ -31,12 +31,41 @@ void generateShells(int pre) {
   // oh yeah its cuz story mode has non random
   // gun
   if (pre == 0) {
-    unsigned char bullets = 0;
+    byte bullets = 0;
+    byte blanks = 0, lives = 0;
     // -> = implicit deference, needed here cuz weapon is a pointer to an object not a real object
+    // so equivalent to (*currentGame.weapon).capacity
     for (int i = 0; i < currentGame.weapon->capacity; i++) {
       int bullet = rand() % 3;
       currentGame.weapon->loadOrder[i] = bullet;
       if (bullet != 0) bullets++;
+      if (bullet == 1) blanks++;
+      if (bullet == 2) lives++;
+    }
+    // check as to not allow for a full concentratio of live or blank rounds
+    if (blanks == 0) {
+      for (int i = 0; i < bullets; i++) {
+        if (currentGame.weapon->loadOrder[i] == 0) {
+          currentGame.weapon->loadOrder[i] = 1;
+          break;
+        }
+        if (currentGame.weapon->loadOrder[i] == 2 && bullets > 1) {
+          currentGame.weapon->loadOrder[i] = 1; bullets++;
+          break;
+        }
+      }
+    }
+    if (lives == 0) {
+      for (int i = 0; i < bullets; i++) {
+        if (currentGame.weapon->loadOrder[i] == 0) {
+          currentGame.weapon->loadOrder[i] = 2;
+          break;
+        }
+        if (currentGame.weapon->loadOrder[i] == 1 && bullets > 1) {
+          currentGame.weapon->loadOrder[i] = 2; bullets++;
+          break;
+        }
+      }
     }
     currentGame.weapon->currentBullets = bullets;
   }
@@ -44,6 +73,35 @@ void generateShells(int pre) {
     //uhh idk
     // if (strcmp(currentGame.weapon->name, "shotgun" && currentGame.mode == 1) == 0) {
   }
+  sortUpShells();
+}
+
+void generateHP() {
+  byte hp = (rand() % 4)+2;
+  player.hp = hp;
+  dealer.hp = hp;
+}
+
+void resolveEndgame() {
+  if (player.hp == 0) {
+    currentGame.winner = 1;
+  }
+  if (dealer.hp == 0) {
+    currentGame.winner = 2;
+  }
+  // mayube print the win screen so asking like "yo bro wanna play again"
+  //if (currentGame.winner != 0 && currentGame.over != 0) 
+}
+
+struct character *resolveTurn(struct character *origin, struct character *target, struct character *opponent) {
+  if (currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] == 2) {
+    target->hp--;
+    currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] = 0;
+    currentGame.weapon->currentBullets--;
+    if (target == origin) return opponent; 
+  }
+  resolveEndgame();
+  return target;
 }
 
 // this prob useless
