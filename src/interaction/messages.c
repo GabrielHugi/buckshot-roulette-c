@@ -457,7 +457,15 @@ void printGameLocation() {
     }
 
     // 100's - outcome screens (eg, dealer shot himself)
-    if (currentGame.phase == 100) {
+    // xyz: x - unique id, y - case, z - stage
+    // example: 111 = first stage of the first case of the outcome screens
+    /*
+    y = 1: dealer shoots himself
+    y = 2: dealer gets shot
+    y = 3: player shoot himself
+    y = 4: player shoots dealer
+    */
+    if (currentGame.phase == 111) {
       // the scenario
       char string[20][stdMaxChars];
       for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
