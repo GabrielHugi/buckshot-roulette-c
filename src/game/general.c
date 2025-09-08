@@ -223,7 +223,7 @@ int multiplayerGame() {
 
 int initiateGame() {
   // test screens
-if (2 == 1) {
+if (1 == 1) {
   currentGame.weapon = &shotgun;
   currentGame.mode = 1;
   generateShells(0);
