@@ -43,14 +43,18 @@ void generateShells(int pre) {
       if (bullet == 2) lives++;
     }
     // check as to not allow for a full concentratio of live or blank rounds
+    if (bullets < 2) {
+      generateShells(pre);
+      return;
+    }
     if (blanks == 0) {
       for (int i = 0; i < bullets; i++) {
         if (currentGame.weapon->loadOrder[i] == 0) {
-          currentGame.weapon->loadOrder[i] = 1;
+          currentGame.weapon->loadOrder[i] = 1; bullets++;
           break;
         }
-        if (currentGame.weapon->loadOrder[i] == 2 && bullets > 1) {
-          currentGame.weapon->loadOrder[i] = 1; bullets++;
+        if (currentGame.weapon->loadOrder[i] == 2) {
+          currentGame.weapon->loadOrder[i] = 1;
           break;
         }
       }
@@ -58,11 +62,11 @@ void generateShells(int pre) {
     if (lives == 0) {
       for (int i = 0; i < bullets; i++) {
         if (currentGame.weapon->loadOrder[i] == 0) {
-          currentGame.weapon->loadOrder[i] = 2;
+          currentGame.weapon->loadOrder[i] = 2; bullets++;
           break;
         }
-        if (currentGame.weapon->loadOrder[i] == 1 && bullets > 1) {
-          currentGame.weapon->loadOrder[i] = 2; bullets++;
+        if (currentGame.weapon->loadOrder[i] == 1) {
+          currentGame.weapon->loadOrder[i] = 2;
           break;
         }
       }

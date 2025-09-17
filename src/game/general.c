@@ -200,6 +200,7 @@ int pveGame() {
         sleep(3);
       }
     }
+    resolvePrize();
     //prints option to play agan n shit
     if (currentGame.winner != 0) {
       currentGame.phase = 200;
@@ -223,11 +224,12 @@ int multiplayerGame() {
 
 int initiateGame() {
   // test screens
-if (1 == 1) {
+if (2 == 1) {
   currentGame.weapon = &shotgun;
   currentGame.mode = 1;
   generateShells(0);
   sortUpShells();
+  currentGame.prize = 101;
   currentGame.phase = 200;
   printGameLocation();
 }

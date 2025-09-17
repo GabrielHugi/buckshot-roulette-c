@@ -1,4 +1,5 @@
 *.txt
+# why did the exe not get ignored bruh wathever
 *.exe
 .vscode
 

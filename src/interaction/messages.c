@@ -183,15 +183,16 @@ void printSecondaryLocation() {
     sprintf(string[11],"XXXXXXXXXXXXXXXXX | \\   \\                   |\\                  \\     ");
 
     //info
-    char stringSide[4][stdMaxChars];
-    for (int i = 0; i < 4; i++) memset(stringSide[i], 0, stdMaxChars);
+    char stringSide[5][stdMaxChars];
+    for (int i = 0; i < 5; i++) memset(stringSide[i], 0, stdMaxChars);
     sprintf(stringSide[0], "You are in club");
-    sprintf(stringSide[1], "Loud music plays in the background");
-    sprintf(stringSide[2], "You can interact with:");
-    sprintf(stringSide[3], "Door, Bars");
+    sprintf(stringSide[1], "Loud music plays");
+    sprintf(stringSide[2], "in the background");
+    sprintf(stringSide[3], "You can interact with:");
+    sprintf(stringSide[4], "Door, Bars");
 
     putInsideBox(string, 12, 1, 1);
-    addSideInfo(string, stringSide, 4);
+    addSideInfo(string, stringSide, 5);
     for (int i = 0; i < 12; i++) {
       printf("%s\n", string[i]);
     }
@@ -501,13 +502,32 @@ void printGameLocation() {
     // 200's - ending screens (eg, play again)
     if (currentGame.phase == 200) {
       // the scenario
+
+      //calculating the spacing
+      long int money = currentGame.prize;
+      char spacingLeft[12], spacingRight[12];
+      memset(spacingLeft, ' ', 11); spacingLeft[11] = '\0'; memset(spacingRight, ' ', 11); spacingRight[11] = '\0';
+      byte leftI = 10; byte rightI = 10;
+      for (int i = 0; i < 22; i++) {
+        money = money/10;
+        if (i % 2 == 0) {
+          spacingLeft[leftI] = '\0';
+          leftI--;
+        }
+        else {
+          spacingRight[rightI] = '\0';
+          rightI--;
+        }
+        if (money == 0) break;
+      }
+
       char string[20][stdMaxChars];
       for (int i = 0; i < 20; i++) memset(string[i], 0, stdMaxChars);
       sprintf(string[0], "                 /----------------------\\                ");
       sprintf(string[1], "                 |                      |                ");
       sprintf(string[2], "                 |  YES            NO   |                ");
-      sprintf(string[3], "                 |                      |                ");
-      sprintf(string[4], "                 |                      |                ");
+      sprintf(string[3], "                 |        Prize         |                ");
+      sprintf(string[4], "                 |%s%ld%s|                ",spacingLeft, currentGame.prize, spacingRight);
       sprintf(string[5], "                 \\_____________________/                 ");
       sprintf(string[6], "                 _|_   _|_     _|_   _|_                 ");
       sprintf(string[7], "                |   | |   |   |   | |   |                ");
