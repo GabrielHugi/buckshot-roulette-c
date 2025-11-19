@@ -28,6 +28,8 @@ int prepareVariables () {
     }
     player.id = 0;
     dealer.id = 1;
+    player.memory = malloc(sizeof(struct memory));
+    dealer.memory = malloc(sizeof(struct memory));
     currentGame.phase = 0;
     currentGame.over = 0;
     currentGame.winner = 0;
