@@ -1,9 +1,9 @@
-*.txt
-# why did the exe not get ignored bruh wathever
-*.exe
-.vscode
-
 # this bs is for ignoring files without extension, e.g linux executables
 *
 !*.*
 !*/
+
+*.txt
+
+*.exe
+.vscode
