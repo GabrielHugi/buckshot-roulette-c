@@ -167,6 +167,7 @@ int pveGame() {
           printf("%d ", currentGame.weapon->loadOrder[i]);
         }
         printf("\n");
+        printf("%d---%d---%d\n", dealer.memory->rememberedCapacity, dealer.memory->rememberedLives, dealer.memory->rememberedBlanks);
         // test
         option = askNumericLoop(&handleValid, "Choose:", 1, 2, printGameLocation);
         if (option == 1) target = &player;
@@ -187,8 +188,10 @@ int pveGame() {
           printf("%d ", currentGame.weapon->loadOrder[i]);
         }
         printf("\n");
+        printf("%d---%d---%d\n", dealer.memory->rememberedCapacity, dealer.memory->rememberedLives, dealer.memory->rememberedBlanks);
         // test
         printGameLocation();
+        // here add the thing later the function of the ai
         option = 2;
         if (option == 1) target = &dealer;
         else target = &player;

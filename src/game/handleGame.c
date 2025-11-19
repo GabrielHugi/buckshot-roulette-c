@@ -1,4 +1,5 @@
 #include "../gamevars/vars.h"
+#include "ai.h"
 #include "../tools/tools.h"
 #include "handleGame.h"
 #include <time.h>
@@ -50,11 +51,11 @@ void generateShells(int pre) {
     if (blanks == 0) {
       for (int i = 0; i < bullets; i++) {
         if (currentGame.weapon->loadOrder[i] == 0) {
-          currentGame.weapon->loadOrder[i] = 1; bullets++;
+          currentGame.weapon->loadOrder[i] = 1; bullets++; blanks++;
           break;
         }
         if (currentGame.weapon->loadOrder[i] == 2) {
-          currentGame.weapon->loadOrder[i] = 1;
+          currentGame.weapon->loadOrder[i] = 1; lives--; blanks++;
           break;
         }
       }
@@ -62,16 +63,17 @@ void generateShells(int pre) {
     if (lives == 0) {
       for (int i = 0; i < bullets; i++) {
         if (currentGame.weapon->loadOrder[i] == 0) {
-          currentGame.weapon->loadOrder[i] = 2; bullets++;
+          currentGame.weapon->loadOrder[i] = 2; bullets++; lives++;
           break;
         }
         if (currentGame.weapon->loadOrder[i] == 1) {
-          currentGame.weapon->loadOrder[i] = 2;
+          currentGame.weapon->loadOrder[i] = 2; lives++; blanks--;
           break;
         }
       }
     }
     currentGame.weapon->currentBullets = bullets;
+    addStartToMemory(&dealer, bullets, lives, blanks);
   }
   if (pre == 1) {
     //uhh idk
@@ -98,15 +100,19 @@ void resolveEndgame() {
 }
 
 struct character *resolveTurn(struct character *origin, struct character *target, struct character *opponent) {
+  // live
   if (currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] == 2) {
     target->hp--;
     currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] = 0;
     currentGame.weapon->currentBullets--;
+    addShotToMemory(&dealer, -1, 0);
     if (target == origin) return opponent; 
   }
+  //blank
   else if (currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] == 1) {
     currentGame.weapon->loadOrder[currentGame.weapon->currentBullets-1] = 0;
     currentGame.weapon->currentBullets--; 
+    addShotToMemory(&dealer, 0, -1);
   }
   resolveEndgame();
   return target;

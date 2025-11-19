@@ -38,6 +38,12 @@ struct game {
   time_t roundStart;
 };
 
+struct memory {
+  byte rememberedCapacity;
+  byte rememberedLives;
+  byte rememberedBlanks;
+};
+
 // player "object" (but let's agree to not call it object because object oriented programming is for losers, so we call it based C structure for based code devs)
 struct character {
   /*
@@ -50,6 +56,7 @@ struct character {
   char name[7];
   byte hp;
   byte inv[8];
+  struct memory *memory;
 };
 
 struct gun {
@@ -61,7 +68,7 @@ struct gun {
   byte capacity;
   // current bullets
   byte currentBullets;
-  // name for redundancy and object shit idk also useful so i don't have to waste time coding this garbage
+  // idk why
   char name[10];
 };
 
@@ -105,7 +112,3 @@ extern struct gun revolver;
 extern const int stdMaxChars;
 
 extern int prepareVariables();
-
-
-// convenient things
-typedef unsigned char byte;
